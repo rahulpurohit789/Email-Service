@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Managed Email Service</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="container mt-5">
+  <h1 class="fw-bold text-center">Managed Email Service</h1>
+  <div class="rounded p-3 mb-2 bg-dark text-white">
+    <form id="emailForm" action="/submit" method="POST" enctype="multipart/form-data" style="background-color: white;">
+      <div class="form-group">
+        <input type="checkbox" id="ReplyTo">
+        <label for="ReplyTo" class="text-dark"><h5>Add Reply To</h5></label><br>
+        <div id="replyToSection" style="display: none;">
+          <label for="ReplyToInput" class="text-dark"><h6>Reply To</h6></label>
+          <input type="email" class="form-control" id="ReplyToInput" name="replyTo" placeholder="Use Commas to separate multiple emails">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="to" class="text-dark"><h6>To</h6></label>
+        <input type="email" class="form-control" id="to" name="to" placeholder="Use Commas to separate multiple emails" required>
+      </div>
+
+      <div class="form-group">
+        <input type="checkbox" id="CC_Bcc">
+        <label for="CC_Bcc" class="text-dark"><h5>Add Cc/Bcc</h5></label><br>
+        <div id="ccBccSection" style="display: none;">
+          <label for="cc" class="text-dark"><h6>Cc</h6></label>
+          <input type="text" class="form-control" id="cc" name="cc" placeholder="Use Commas to separate multiple emails"><br>
+          <label for="bcc" class="text-dark"><h6>Bcc</h6></label>
+          <input type="text" class="form-control" id="bcc" name="bcc" placeholder="Use Commas to separate multiple emails">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="subject" class="text-dark"><h6>Subject</h6></label>
+        <input type="text" class="form-control" id="subject" name="subject" placeholder="Email Subject" required>
+      </div>
+
+      <div class="form-group mb-0">
+        <label for="tbody" class="text-dark"><h6>Body</h6></label>
+      </div>
+      <div class="container border rounded p-0 mb-3">
+        <div class="flex-wrap">
+          <ul class="nav bodyNav w-100 nav-tabs bg-light rounded" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active text-dark" id="text-tab" data-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="true" onclick="setActiveTab('text')">Text</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" id="html-tab" data-toggle="tab" href="#html" role="tab" aria-controls="html" aria-selected="false" onclick="setActiveTab('html')">HTML</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" id="markdown-tab" data-toggle="tab" href="#markdown" role="tab" aria-controls="markdown" aria-selected="false" onclick="setActiveTab('markdown')">Markdown</a>
+            </li>
+            <div class="col-md-7 col-3 col-lg-9 d-flex justify-content-end align-items-center mt-lg-0 p-0 float-right">
+              <button type="button" onclick="displayPreview()" class="previewbtn btn-md rounded mb-2">Preview</button>
+            </div>
+          </ul>
+        </div>
+        <div class="tab-content" id="TabContents">
+          <div class="tab-pane fade show active" id="text" role="tabpanel" aria-labelledby="text-tab">
+            <textarea class="form-control code-editor mt-3" rows="10" id="tbody" name="tbody" placeholder="Write your email here"></textarea>
+          </div>
+          <div class="tab-pane fade" id="html" role="tabpanel" aria-labelledby="html-tab">
+            <textarea class="form-control code-editor" rows="5" id="htmlB" name="htmlB" placeholder="Write your email as HTML"></textarea>
+          </div>
+          <div class="tab-pane fade" id="markdown" role="tabpanel" aria-labelledby="markdown-tab">
+            <textarea class="form-control code-editor" rows="5" id="mdB" name="mdB" placeholder="Write your email as Markdown."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="attachments" class="text-dark"><h6>Attachments</h6></label>
+        <input type="file" class="form-control-file" id="attachments" name="attachments" multiple>
+      </div>
+
+      <button type="submit" id="sendButton" class="btn ml-2 btn-light mt-2">Send Email</button>
+
+      <div id="loader-overlay">
+        <div class="loader"></div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal Structure -->
+  <div class="modal fade" id="contentModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Preview</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <pre id="modalContent" class="m-0"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

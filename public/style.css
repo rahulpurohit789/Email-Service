@@ -1,0 +1,71 @@
+#previewWork{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 9999;
+    min-width: 50%;
+    min-height: 50%;
+}
+.hide{
+    display: none;
+}
+body{
+    background-color: rgb(255, 255, 255);
+}
+
+.line-numbers {
+    color: black; 
+    float: left; 
+    margin-right: 10px; 
+    white-space: pre-line; 
+  }
+
+  .code-editor {
+    width: calc(100% - 50px);
+    float: left;
+    max-height: 100%;
+  }
+  
+
+.previewbtn{
+    background: none;
+    border: none;
+    color: rgb(24, 126, 250);
+    display: flex;
+    justify-content: end;
+    align-self: flex-end;
+    align-items: end;
+  z-index: 100;
+
+}
+
+.previewbtn.active {
+  border-color: black;
+}
+
+
+
+@media screen and (max-width: 480px) {
+  body {
+    background-color: lightgreen; 
+  }
+  
+  .bodyNav li a{
+    size: 1px;
+    font-size: small;
+  } 
+  .bodyNav div button {
+    font-size: small;
+    padding-right: 5px;
+   
+  }
+  .bodyNav div{
+    display: none;
+    
+  }
+}

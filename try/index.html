@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Managed Email Service</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body{
+        background-color: #1182EB;
+    }
+    .display {
+      display: none !important ;
+    }
+ 
+</style>
+
+  </head>
+<body class="container mt-5">
+    <div class="rounded p-3 mb-2 bg- text-white ">
+   <form id="emailForm">
+    <div class="form-group">
+      <input type="checkbox" id="ReplyTo" onclick="onClickReply()">  
+      <label for="to">Add Reply To:</label><br>
+      
+      <div id="reply" class="display">
+        <label for="Replyto" >Reply To:</label>
+      <input type="email" class="form-control" id="ReplyTo-input" placeholder="Use Commas to separate multiple emails">
+      
+      </div>
+      <label for="to">To:</label>
+      <input type="email" class="form-control" id="to" name="to" placeholder="Use Commas to separate multiple emails" req>
+    </div>
+
+    <div class="form-group">
+      <input type="checkbox" id="CC/Bcc" onclick="onClickHandler()">
+        <label for="to">Add Cc/Bcc:</label><br>
+      <div id="CCInputContainer" class="display"><label for="cc">CC:</label>
+        <input type="text" class="form-control" id="cc" name="cc" placeholder="Use Commas to separate multiple emails"></div>
+      <div id="BCCInputContainer" class="display">
+        <label for="bcc">BCC:</label>
+      <input type="text" class="form-control" id="bcc" name="bcc" placeholder="Use Commas to separate multiple emails">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Subject:</label>
+      <input type="text" class="form-control" id="subject" name="subject" placeholder="Email Subject"  req>
+    </div>
+
+    <div class="form-group">
+      <label for="Body">Body:</label>
+      </div>
+      <div class="container mt-2">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="text-tab" data-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="true">Text</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" id="html-tab" data-toggle="tab" href="#html" role="tab" aria-controls="html" aria-selected="false">HTML</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" id="markdown-tab" data-toggle="tab" href="#markdown" role="tab" aria-controls="markdown" aria-selected="false">Markdown</a>
+            </li>
+            <li>
+                
+            </li>
+        </ul>
+        <div class="tab-content" id="TabContents">
+            <div class="tab-pane fade show active "  id="text" role="tabpanel" aria-labelledby="text-tab">
+                <h3>Text Content</h3>
+                <textarea class="form-control"  rows="5" placeholder="Write your message here..."></textarea> 
+            </div>
+            <div class="tab-pane fade " id="html" role="tabpanel" aria-labelledby="html-tab">
+                <h3>HTML Content</h3>
+                <textarea id="htmlInput" class="form-control" rows="5" placeholder="Write your message here..."></textarea>></textarea>
+            </div>
+            <div class="tab-pane fade " id="markdown" role="tabpanel" aria-labelledby="markdown-tab">
+                <h3>Markdown Content</h3>
+                <textarea id="markdownInput" class="form-control" rows="5" placeholder="Write your message here..."></textarea>></textarea>
+            </div>
+        </div>
+        <button id="previewBtn">Preview</button>
+        <div id="preview"></div>
+        
+    </div>
+  </div>
+
+    
+   <!-- 
+    <div class="form-group">
+      <label for="attachments">Attachments:</label>
+      <input type="file" class="form-control-file" id="attachments" name="attachments" multiple>
+    </div> -->
+
+    <button type="button" class="btn btn-primary" >Send Email</button>
+ </form>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
